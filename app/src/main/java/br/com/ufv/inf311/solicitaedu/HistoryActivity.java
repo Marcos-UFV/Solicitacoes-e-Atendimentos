@@ -1,28 +1,30 @@
 package br.com.ufv.inf311.solicitaedu;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.View;
 
-public class MainActivity extends Activity {
+
+public class HistoryActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_history);
 
-        ActivityBuilder.build(this, "Home");
+        ActivityBuilder.build(this, "Histórico");
+    }
+
+    // Go to Home (MainActivity).
+    public void openHomeActivity(View v) {
+        Intent it = new Intent(this, MainActivity.class);
+        startActivity(it);
     }
 
     // Do nothing, since it's the current Activity.
-    public void openHomeActivity(View v) {
-
-    }
-
-    // Go to History Activity.
     public void openHistoryActivity(View v) {
-        Intent it = new Intent(this, HistoryActivity.class);
-        startActivity(it);
+
     }
 
     // Go to History Activity.
