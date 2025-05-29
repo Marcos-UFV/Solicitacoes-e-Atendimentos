@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/logo" />
+    <TextView
+        android:id="@+id/nome"
+        android:layout_marginTop="20dp"
+        android:textSize="15pt"
+        android:textFontWeight="700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solicita.edu"
+        android:textColor="@color/lightBlue"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/logo"/>
+
+    <TextView
+        android:layout_marginLeft="50dp"
+        android:id="@+id/lEmail"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="8pt"
+        android:text="Email"
+        android:textColor="@color/darkGray"
+        android:layout_below="@id/nome" />
+    <EditText
+        android:id="@+id/tEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lEmail"
+        android:inputType="textEmailAddress"
+        android:layout_alignStart="@+id/lEmail"/>
+
+    <TextView
+        android:id="@+id/lSenha"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        android:textSize="8pt"
+        android:textColor="@color/darkGray"
+        android:layout_below="@id/tEmail"
+        android:layout_alignStart="@+id/lEmail"/>
+    <EditText
+        android:id="@+id/tSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lSenha"
+        android:inputType="textPassword"
+        android:layout_alignStart="@+id/lEmail"/>
+
+    <Button
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/tSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Entrar"
+        android:textColor="@color/white"
+        android:background="@color/lightBlue"
+        android:layout_centerHorizontal="true"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="10dp"/>
+
+</RelativeLayout>
