@@ -5,12 +5,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <!-- Header -->
+
     <include
         android:id="@+id/header_include"
-        layout="@layout/header" />
+        layout="@layout/header"/>
 
-    <!-- Footer -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingRight="140dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:background="@drawable/notification_banner">>
+
+        <TextView
+            android:id="@+id/responseCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="X Novas Respostas"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+
+    <!-- Last Update -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="Última atualização: 11/05/2025 - 14:23"
+        android:textSize="12sp" />
+
     <include
         android:id="@+id/footer_include"
         layout="@layout/footer" />
