@@ -5,10 +5,5 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.FooterButton" parent="android:Widget.Button">
-        <item name="cornerRadius">30dp</item>
-        <item name="backgroundTint">@color/SOLICITA_white</item>
-    </style>
-
     <style name="Theme.SolicitaEdu" parent="Base.Theme.SolicitaEdu" />
 </resources>
