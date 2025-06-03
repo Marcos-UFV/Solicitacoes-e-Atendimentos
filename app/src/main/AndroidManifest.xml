@@ -13,12 +13,6 @@
         android:theme="@style/Theme.SolicitaEdu"
         tools:targetApi="31">
         <activity
-            android:name=".HistoryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RequestActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
