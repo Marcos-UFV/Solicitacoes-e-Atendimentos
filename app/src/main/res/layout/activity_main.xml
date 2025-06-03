@@ -5,41 +5,136 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-
+    <!--  Header  -->
     <include
         android:id="@+id/header_include"
         layout="@layout/header"/>
 
+    <!--  Main Content  -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingRight="140dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:background="@drawable/notification_banner">>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/responseCount"
-            android:layout_width="wrap_content"
+        <!--  Notification Bar (new responses)  -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="X Novas Respostas"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:orientation="vertical"
+            android:paddingRight="26dp"
+            android:paddingLeft="26dp"
+            android:layout_marginBottom="60dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/solicita_notification_bttn"
+                android:textColor="@color/SOLICITA_white"
+                android:padding="12dp"
+                android:text="X Novas Respostas"
+                android:textSize="26dp"
+                android:gravity="left|center"
+                android:textAllCaps="false"
+                android:onClick="openHistoryActivity"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="Última atualização: 11/05/2025 - 14:23"
+                android:textSize="12sp"
+                android:gravity="right"/>
+        </LinearLayout>
+
+
+        <!--  2x3 Button Grid  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="26dp"
+            android:paddingLeft="26dp" >
+
+            <!--  First Button Grid Line  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/solicita_home_bttn"
+                    android:text="Instituição"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="sans-serif-light"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/solicita_home_bttn"
+                    android:text="Agenda"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="sans-serif-light"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/solicita_home_bttn"
+                    android:text="Ligar"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"/>
+            </LinearLayout>
+
+
+            <!--  Second Button Grid Line  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/solicita_home_bttn"
+                    android:text="Coeficientes"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="sans-serif-light"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/solicita_home_bttn"
+                    android:text="Configurações"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="sans-serif-light"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/solicita_home_bttn"
+                    android:text="Ajuda"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 
-    <!-- Last Update -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Última atualização: 11/05/2025 - 14:23"
-        android:textSize="12sp" />
-
+    <!--  Footer  -->
     <include
         android:id="@+id/footer_include"
         layout="@layout/footer" />
