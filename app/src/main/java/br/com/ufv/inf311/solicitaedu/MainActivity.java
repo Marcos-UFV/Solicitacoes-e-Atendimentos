@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.google.android.material.button.MaterialButton;
+import java.util.Calendar;
+
 
 public class MainActivity extends Activity {
     @Override
@@ -31,6 +30,12 @@ public class MainActivity extends Activity {
     public void callUniversity(View v) {
         Uri uri = Uri.parse("tel:+55 (31) 3612-1081");
         Intent it = new Intent(Intent.ACTION_DIAL, uri);
+        startActivity(it);
+    }
+
+    // Open Calendar Activity.
+    public void openCalendarActivity(View v) {
+        Intent it = new Intent(this, CalendarActivity.class);
         startActivity(it);
     }
 
