@@ -14,56 +14,64 @@
         android:layout_marginTop="50dp"
         android:src="@drawable/logo" />
     <TextView
-        android:id="@+id/nome"
+        android:id="@+id/name"
         android:layout_marginTop="20dp"
         android:textSize="15pt"
         android:textFontWeight="700"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Solicita.edu"
+        android:text="@string/app_name"
         android:textColor="@color/SOLICITA_blue"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/logo"/>
-
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:orientation="vertical"
+        android:id="@+id/infoWrapper"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="50dp"
-        android:id="@+id/lEmail"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="8pt"
-        android:text="Email"
-        android:textColor="@color/SOLICITA_blue"
-        android:layout_below="@id/nome" />
-    <EditText
-        android:id="@+id/tEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lEmail"
-        android:inputType="textEmailAddress"
-        android:layout_alignStart="@+id/lEmail"/>
+        android:layout_marginRight="50dp">
+        <TextView
+            android:id="@+id/lEmail"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8pt"
+            android:text="Email"
+            android:textColor="@color/SOLICITA_blue"
+            android:layout_below="@id/name" />
+        <EditText
+            android:id="@+id/tEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lEmail"
+            android:inputType="textEmailAddress"
+            android:layout_alignStart="@+id/lEmail"/>
 
-    <TextView
-        android:id="@+id/lSenha"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha"
-        android:textSize="8pt"
-        android:textColor="@color/SOLICITA_gray"
-        android:layout_below="@id/tEmail"
-        android:layout_alignStart="@+id/lEmail"/>
-    <EditText
-        android:id="@+id/tSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/lSenha"
-        android:inputType="textPassword"
-        android:layout_alignStart="@+id/lEmail"/>
-
+        <TextView
+            android:id="@+id/lPassword"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senha"
+            android:textSize="8pt"
+            android:textColor="@color/SOLICITA_blue"
+            android:layout_below="@id/tEmail"
+            android:layout_alignStart="@+id/lEmail"/>
+        <EditText
+            android:id="@+id/tPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lPassword"
+            android:inputType="textPassword"
+            android:layout_alignStart="@+id/lEmail"/>
+    </LinearLayout>
     <Button
+        android:id="@+id/loginBtn"
         android:layout_marginTop="40dp"
-        android:layout_below="@id/tSenha"
+        android:layout_below="@id/infoWrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Entrar"
@@ -72,5 +80,7 @@
         android:layout_centerHorizontal="true"
         android:paddingHorizontal="24dp"
         android:paddingVertical="10dp"/>
+
+
 
 </RelativeLayout>
