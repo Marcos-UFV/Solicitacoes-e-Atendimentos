@@ -10,4 +10,20 @@
     <include
         android:id="@+id/header"
         layout="@layout/returnable_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/calendar_card_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp"
+            />
+
+
+    </ScrollView>
 </LinearLayout>
