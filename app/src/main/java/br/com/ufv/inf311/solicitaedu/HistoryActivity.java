@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class HistoryActivity extends Activity {
@@ -31,6 +32,9 @@ public class HistoryActivity extends Activity {
                 title.setText("Solicitação #" + i);
                 TextView date = card.findViewById(R.id.concluded_history_card_date);
                 date.setText("03/06/2025");
+                // Card click
+                int finalI = i;
+                card.setOnClickListener(view -> onCardClick(finalI));
             } else {
                 card = inflater.inflate(R.layout.waiting_history_card, cardContainer, false);
                 TextView title = card.findViewById(R.id.waiting_history_card_title);
@@ -38,6 +42,7 @@ public class HistoryActivity extends Activity {
                 TextView date = card.findViewById(R.id.waiting_history_card_date);
                 date.setText("03/06/2025");
             }
+
             cardContainer.addView(card);
         }
     }
@@ -54,6 +59,11 @@ public class HistoryActivity extends Activity {
     // Go to History Activity.
     public void openRequestActivity(View v) {
         Intent it = new Intent(this, RequestActivity.class);
+        startActivity(it);
+    }
+
+    private void onCardClick(int idx) {
+        Intent it = new Intent(this, HistoryDetail.class);
         startActivity(it);
     }
 }
