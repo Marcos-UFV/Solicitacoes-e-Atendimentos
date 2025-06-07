@@ -1,0 +1,72 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/history_card_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/SOLICITA_green" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp" >
+
+        <!-- Status Icon -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/calendar_card_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:textAllCaps="false"
+            android:padding="0dp"
+            android:onClick="saveOnGoogleCalendar"
+
+            app:icon="@drawable/calendar_icon"
+            app:iconTint="@color/SOLICITA_green"
+            app:iconSize="28dp"
+            app:iconGravity="textEnd"
+            app:backgroundTint="@android:color/transparent"
+            app:cornerRadius="16dp"/>
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/calendar_card_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título do Card"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="32dp"
+            android:layout_alignTop="@id/calendar_card_icon"
+            android:textColor="@color/SOLICITA_green"/>
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/calendar_card_loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Localização do Evento"
+            android:textStyle="bold"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="32dp"
+            android:layout_below="@id/calendar_card_title"
+            android:textColor="@color/SOLICITA_gray"/>
+
+        <!-- Date -->
+        <TextView
+            android:id="@+id/calendar_card_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xx/xx/xxxx às xx:xx"
+            android:layout_below="@id/calendar_card_loc"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/SOLICITA_gray"/>
+
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>
