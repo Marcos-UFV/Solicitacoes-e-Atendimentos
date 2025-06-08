@@ -3,43 +3,210 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-
+    <!--  Header  -->
     <include
         android:id="@+id/header_include"
         layout="@layout/header"/>
 
+    <!--  Main Content  -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingRight="140dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:background="@drawable/notification_banner">>
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/responseCount"
-            android:layout_width="wrap_content"
+        <!--  Notification Bar (new responses)  -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="X Novas Respostas"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:orientation="vertical"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:layout_marginBottom="40dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6 Novas Respostas"
+                android:textColor="@color/SOLICITA_white"
+                android:textSize="27sp"
+                android:textAllCaps="false"
+                android:gravity="start|center_vertical"
+                android:onClick="openHistoryActivity"
+                android:padding="12dp"
+
+                app:icon="@drawable/check_icon"
+                app:iconSize="28dp"
+                app:iconGravity="textEnd"
+                app:backgroundTint="@color/SOLICITA_green"
+                app:cornerRadius="16dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="Última atualização: 11/05/2025 - 14:23"
+                android:textSize="12sp"
+                android:gravity="right"/>
+        </LinearLayout>
+
+
+        <!--  2x3 Button Grid  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingRight="26dp"
+            android:paddingLeft="26dp" >
+
+            <!--  First Button Grid Line  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="25dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/coefsButton"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:text="Coeficientes"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:padding="0dp"
+
+                    app:icon="@drawable/coefs_icon"
+                    app:iconTint="@color/SOLICITA_gray"
+                    app:iconSize="45dp"
+                    app:iconGravity="textTop"
+                    app:backgroundTint="@color/SOLICITA_lightGray"
+                    app:cornerRadius="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/calendarButton"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:text="Agenda"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:padding="0dp"
+                    android:onClick="openCalendarActivity"
+
+                    app:icon="@drawable/calendar_icon"
+                    app:iconTint="@color/SOLICITA_gray"
+                    app:iconSize="45dp"
+                    app:iconGravity="textTop"
+                    app:backgroundTint="@color/SOLICITA_lightGray"
+                    app:cornerRadius="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/callButton"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:text="Ligar"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:padding="0dp"
+                    android:onClick="callUniversity"
+
+                    app:icon="@drawable/call_icon"
+                    app:iconTint="@color/SOLICITA_gray"
+                    app:iconSize="45dp"
+                    app:iconGravity="textTop"
+                    app:backgroundTint="@color/SOLICITA_lightGray"
+                    app:cornerRadius="16dp" />
+            </LinearLayout>
+
+
+            <!--  Second Button Grid Line  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/websiteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:text="Instituição"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:padding="0dp"
+                    android:onClick="openUniversityWebsite"
+
+                    app:icon="@drawable/external_icon"
+                    app:iconTint="@color/SOLICITA_gray"
+                    app:iconSize="45dp"
+                    app:iconGravity="textTop"
+                    app:backgroundTint="@color/SOLICITA_lightGray"
+                    app:cornerRadius="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/settingsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:text="Configurações"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:padding="0dp"
+
+                    app:icon="@drawable/settings_icon"
+                    app:iconTint="@color/SOLICITA_gray"
+                    app:iconSize="45dp"
+                    app:iconGravity="textTop"
+                    app:backgroundTint="@color/SOLICITA_lightGray"
+                    app:cornerRadius="16dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/helpButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:text="Ajuda"
+                    android:textAllCaps="false"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="15dp"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:padding="0dp"
+
+                    app:icon="@drawable/help_icon"
+                    app:iconTint="@color/SOLICITA_gray"
+                    app:iconSize="45dp"
+                    app:iconGravity="textTop"
+                    app:backgroundTint="@color/SOLICITA_lightGray"
+                    app:cornerRadius="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 
-    <!-- Last Update -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:text="Última atualização: 11/05/2025 - 14:23"
-        android:textSize="12sp" />
-
+    <!--  Footer  -->
     <include
         android:id="@+id/footer_include"
         layout="@layout/footer" />
