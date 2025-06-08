@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HistoryDetail">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="@color/SOLICITA_green"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginBottom="30dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btn_icon_branco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/arrow_back_ios_new_24px"
+                android:tint="@android:color/white"
+                android:contentDescription="Go back"
+                android:padding="8dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="goBack"/>
+
+            <TextView
+                android:id="@+id/detail_header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exame de suficiência"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Dates title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        android:background="@drawable/history_detail_card_title_top_round"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        >
+
+        <ImageView
+            android:id="@+id/hitory_detail_dates_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Ícone"
+            android:src="@drawable/calendar_month_24px"
+            android:tint="@color/white"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datas"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            ></TextView>
+    </LinearLayout>
+
+    <!-- Dates content-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/history_detail_title_bottom_round">
+
+        <!-- Line 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aplicação do exame:"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/history_detail_sent_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10/06/2025" />
+        </LinearLayout>
+
+<!--        &lt;!&ndash; Line 2 &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="4dp">-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Resposta:"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginEnd="8dp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/history_detail_answer_date"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="06/06/2025" />-->
+<!--        </LinearLayout>-->
+    </LinearLayout>
+
+    <!-- Description title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        android:background="@drawable/history_detail_card_title_top_round"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        >
+
+        <ImageView
+            android:id="@+id/hitory_detail_description_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Ícone"
+            android:src="@drawable/info_24px"
+            android:tint="@color/white"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalhes"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            ></TextView>
+    </LinearLayout>
+
+    <!-- Details content-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/history_detail_title_bottom_round"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:justificationMode="inter_word"
+            android:text="O Exame de Suficiência da disciplina INF 311 tem como objetivo avaliar se o estudante possui os conhecimentos necessários para dispensar a disciplina. A prova terá duração de até três horas e será aplicada de forma presencial, sendo obrigatório apresentar documento oficial com foto. Não será permitido o uso de materiais de consulta, dispositivos eletrônicos ou comunicação entre candidatos durante a aplicação."
+            android:layout_marginEnd="8dp" />
+    </LinearLayout>
+
+    <!-- Attachment title -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        android:background="@drawable/history_detail_card_title_top_round"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
+        >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="Ícone"
+            android:src="@drawable/folder_open_24px"
+            android:tint="@color/white"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anexos"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            ></TextView>
+    </LinearLayout>
+
+    <!-- Attachment content-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/history_detail_title_bottom_round"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Ícone"
+                android:src="@drawable/description_24px"
+                android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="Conteudo_Programatico.pdf"
+                android:layout_marginEnd="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
