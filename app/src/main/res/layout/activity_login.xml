@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:text="@string/enter_label"
         android:textColor="@color/white"
-        android:background="@drawable/enter_button"
+        android:background="@drawable/form_submit_button"
         android:layout_centerHorizontal="true"
         android:paddingHorizontal="24dp"
         android:paddingVertical="10dp"/>
