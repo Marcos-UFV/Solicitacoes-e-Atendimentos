@@ -18,8 +18,7 @@
         android:paddingRight="140dp"
         android:paddingLeft="15dp"
         android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:background="@drawable/notification_banner">>
+        android:paddingBottom="15dp">
 
         <TextView
             android:id="@+id/responseCount"
