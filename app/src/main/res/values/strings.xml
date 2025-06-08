@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">Solicita.Edu</string>
-    <string name="label_title">Titulo</string>
-    <string name="title_hint">Escolha o título da sua solicitação</string>
-    <string name="label_document">Documento</string>
-    <string name="label_description">Descrição</string>
-    <string name="label_submit">Submeter</string>
+    <string name="type_label">Tipo</string>
+    <string name="type_hint">Escolha o tipo da solicitação</string>
+    <string name="description_label">Descrição</string>
+    <string name="submit_label">Submeter</string>
     <string name="document_hint">Escolha o tipo de documento</string>
 </resources>

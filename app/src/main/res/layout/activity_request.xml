@@ -10,100 +10,77 @@
     <include
         android:id="@+id/header"
         layout="@layout/header" />
+
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="445dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="8pt"
+            android:text="@string/type_label"
             android:textColor="@color/SOLICITA_blue"
-            android:text="@string/label_title"/>
+            android:textSize="8pt" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="64dp">
 
             <EditText
-                android:id="@+id/tTitle"
-                android:layout_width="302dp"
-                android:layout_height="38dp"
+                android:id="@+id/tType"
+                android:layout_width="296dp"
+                android:layout_height="47dp"
                 android:layout_gravity="start"
                 android:enabled="false"
-                android:hint="@string/title_hint"
+                android:textColor="@color/black"
+                android:hint="@string/type_hint"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnTitle"
+                app:layout_constraintEnd_toStartOf="@+id/btnType"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.384" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnTitle"
-                android:layout_width="52dp"
-                android:layout_height="36dp"
+                android:id="@+id/btnType"
+                android:layout_width="50dp"
+                android:layout_height="48dp"
                 android:layout_gravity="end"
-                android:layout_marginEnd="4dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/baseline_search_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.454" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="8pt"
+            android:text="@string/description_label"
             android:textColor="@color/SOLICITA_blue"
-            android:text="@string/label_document"/>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:textSize="8pt" />
 
-            <EditText
-                android:id="@+id/tDocument"
-                android:layout_width="302dp"
-                android:layout_height="38dp"
-                android:layout_gravity="start"
-                android:enabled="false"
-                android:hint="@string/document_hint"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnDocument"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnDocument"
-                android:layout_width="52dp"
-                android:layout_height="36dp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/baseline_search_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="8pt"
-            android:textColor="@color/SOLICITA_blue"
-            android:text="@string/label_description"/>
         <EditText
             android:id="@+id/tDescription"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:height="240dp"/>
+            android:layout_height="283dp"
+            android:layout_marginTop="10dp"
+            android:height="240dp" />
 
         <Button
             android:id="@+id/btnSubmit"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:background="@color/SOLICITA_green"
-            android:text="@string/label_submit"/>
+            android:text="@string/submit_label" />
     </LinearLayout>
 
     <!-- Footer -->
