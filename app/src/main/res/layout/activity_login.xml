@@ -17,7 +17,6 @@
         android:id="@+id/name"
         android:layout_marginTop="20dp"
         android:textSize="15pt"
-        android:textFontWeight="700"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
@@ -39,44 +38,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="8pt"
-            android:text="Email"
-            android:textColor="@color/SOLICITA_blue"
-            android:layout_below="@id/name" />
+            android:text="@string/email_label"
+            android:textColor="@color/black"/>
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/tEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lEmail"
             android:inputType="textEmailAddress"
-            android:layout_alignStart="@+id/lEmail"/>
+            android:layout_height="45dp"
+            android:background="@drawable/login_input_field"/>
 
         <TextView
             android:id="@+id/lPassword"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Senha"
+            android:text="@string/password_label"
             android:textSize="8pt"
-            android:textColor="@color/SOLICITA_blue"
-            android:layout_below="@id/tEmail"
-            android:layout_alignStart="@+id/lEmail"/>
+            android:textColor="@color/black"/>
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/tPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lPassword"
+            android:layout_height="45dp"
             android:inputType="textPassword"
-            android:layout_alignStart="@+id/lEmail"/>
+            android:background="@drawable/login_input_field"/>
     </LinearLayout>
     <Button
         android:id="@+id/loginBtn"
+        android:textAllCaps="false"
         android:layout_marginTop="40dp"
         android:layout_below="@id/infoWrapper"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="Entrar"
+        android:text="@string/enter_label"
         android:textColor="@color/white"
-        android:background="@color/SOLICITA_blue"
+        android:background="@drawable/enter_button"
         android:layout_centerHorizontal="true"
         android:paddingHorizontal="24dp"
         android:paddingVertical="10dp"/>
