@@ -27,20 +27,27 @@ public class CalendarActivity extends Activity {
 
         ActivityBuilder.build(this, "Agenda");
 
+        String[] eventos = {"Reunião com Conselho de Ética",
+                            "Uso do Cluster para Pesquisa",
+                            "Reunião com Departamento de Relações Internacionais",
+                            "Exame de Suficiência em IN311"};
+        String[] days = {"06", "07", "09", "10"};
+        String[] begs = {"10", "00", "14", "08"};
+        String[] ends = {"11", "23", "15", "10"};
+
         cardContainer = findViewById(R.id.calendar_card_container);
         inflater = LayoutInflater.from(this);
-        for (int i = 1, j = 0; i <= 7; i++, j += 2) {
+        for (int i = 0, j = 0; i < 4; i++, j += 2) {
             View card;
 
             card = inflater.inflate(R.layout.calendar_card, cardContainer, false);
             TextView title = card.findViewById(R.id.calendar_card_title);
-            title.setText("Reunião #" + i);
+            title.setText(eventos[i]);
             TextView date = card.findViewById(R.id.calendar_card_date);
             TextView loc = card.findViewById(R.id.calendar_card_loc);
 
-            int beg = (8 + (int)(Math.random() * ((17 - 8) + 1)));
-            int end = beg + 1, day = (i + 9 + j);
-            date.setText(day + "/06/2025 - de " + beg + ":00 até " +  end + ":00");
+            int day = (i + 9 + j);
+            date.setText(days[i] + "/06/2025 - de " + begs[i] + ":00 até " +  ends[i] + ":00");
 
             loc.setText("Departamento de Informática - CCE 403B ");
 
