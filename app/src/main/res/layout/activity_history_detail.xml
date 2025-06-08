@@ -38,7 +38,7 @@
                 android:id="@+id/detail_header_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nome da solicitação"
+                android:text="Exame de suficiência"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:textStyle="bold"/>
@@ -97,7 +97,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Envio:"
+                android:text="Aplicação do exame:"
                 android:textStyle="bold"
                 android:layout_marginEnd="8dp" />
 
@@ -105,29 +105,29 @@
                 android:id="@+id/history_detail_sent_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="05/06/2025" />
+                android:text="10/06/2025" />
         </LinearLayout>
 
-        <!-- Line 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="4dp">
+<!--        &lt;!&ndash; Line 2 &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="4dp">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resposta:"
-                android:textStyle="bold"
-                android:layout_marginEnd="8dp" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Resposta:"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_marginEnd="8dp" />-->
 
-            <TextView
-                android:id="@+id/history_detail_answer_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="06/06/2025" />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/history_detail_answer_date"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="06/06/2025" />-->
+<!--        </LinearLayout>-->
     </LinearLayout>
 
     <!-- Description title -->
@@ -178,7 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:justificationMode="inter_word"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at lectus scelerisque, consequat tortor faucibus, volutpat arcu. Nunc vel turpis id mauris imperdiet elementum at aliquam diam. Proin sit amet urna fermentum, condimentum sapien in, tincidunt est. Praesent in metus nec est ultrices sodales a eget mi. Pellentesque lobortis venenatis sapien eget euismod. Curabitur in tellus at velit pellentesque lobortis. Morbi a felis bibendum, vehicula ante a, commodo lectus."
+            android:text="O Exame de Suficiência da disciplina INF 311 tem como objetivo avaliar se o estudante possui os conhecimentos necessários para dispensar a disciplina. A prova terá duração de até três horas e será aplicada de forma presencial, sendo obrigatório apresentar documento oficial com foto. Não será permitido o uso de materiais de consulta, dispositivos eletrônicos ou comunicação entre candidatos durante a aplicação."
             android:layout_marginEnd="8dp" />
     </LinearLayout>
 
@@ -244,7 +244,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:justificationMode="inter_word"
-                android:text="arquivo.pdf"
+                android:text="Conteudo_Programatico.pdf"
                 android:layout_marginEnd="8dp" />
 
         </LinearLayout>

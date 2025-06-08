@@ -24,27 +24,62 @@ public class HistoryActivity extends Activity {
 
         cardContainer = findViewById(R.id.history_card_container);
         inflater = LayoutInflater.from(this);
-        for (int i = 10; i > 0; i--) {
+//        for (int i = 10; i > 0; i--) {
+//            View card;
+//            if (i % 3 == 0) {
+//                card = inflater.inflate(R.layout.concluded_history_card, cardContainer, false);
+//                TextView title = card.findViewById(R.id.concluded_history_card_title);
+//                title.setText("Solicitação #" + i);
+//                TextView date = card.findViewById(R.id.concluded_history_card_date);
+//                date.setText("03/06/2025");
+//                // Card click
+//                int finalI = i;
+//                card.setOnClickListener(view -> onCardClick(finalI));
+//            } else {
+//                card = inflater.inflate(R.layout.waiting_history_card, cardContainer, false);
+//                TextView title = card.findViewById(R.id.waiting_history_card_title);
+//                title.setText("Solicitação #" + i);
+//                TextView date = card.findViewById(R.id.waiting_history_card_date);
+//                date.setText("03/06/2025");
+//            }
+//
+//            cardContainer.addView(card);
+//        }
+
+        String[] titles = {
+                "Histórico Escolar Graduação",
+                "Certidão Atestado de Matrícula",
+                "Certidão Atestado de que é aluno",
+                "Alteração de Pré(co)-Requisito",
+                "Trancamento de Matrícula",
+                "Exame de suficiência"
+        };
+
+        for (int i = 0; i < titles.length; i++) {
             View card;
-            if (i % 3 == 0) {
+            String titleText = titles[i];
+            int day = 20 - i;
+
+            if ("Exame de suficiência".equals(titleText)) {
                 card = inflater.inflate(R.layout.concluded_history_card, cardContainer, false);
                 TextView title = card.findViewById(R.id.concluded_history_card_title);
-                title.setText("Solicitação #" + i);
+                title.setText(titleText);
                 TextView date = card.findViewById(R.id.concluded_history_card_date);
-                date.setText("03/06/2025");
-                // Card click
+                date.setText("" + day + "/05/2025");
                 int finalI = i;
                 card.setOnClickListener(view -> onCardClick(finalI));
             } else {
                 card = inflater.inflate(R.layout.waiting_history_card, cardContainer, false);
                 TextView title = card.findViewById(R.id.waiting_history_card_title);
-                title.setText("Solicitação #" + i);
+                title.setText(titleText);
                 TextView date = card.findViewById(R.id.waiting_history_card_date);
-                date.setText("03/06/2025");
+                date.setText("" + day + "/05/2025");
             }
 
             cardContainer.addView(card);
         }
+
+
     }
 
     // Go to Home (MainActivity).
