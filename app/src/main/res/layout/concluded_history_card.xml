@@ -6,9 +6,9 @@
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
-    app:cardBackgroundColor="#28b463"
+    app:cardBackgroundColor="@color/SOLICITA_green"
     app:strokeWidth="1dp"
-    app:strokeColor="#1d8348" >
+    app:strokeColor="@color/SOLICITA_green" >
 
     <RelativeLayout
         android:layout_width="match_parent"
