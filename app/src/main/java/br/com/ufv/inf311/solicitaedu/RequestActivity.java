@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class RequestActivity extends Activity {
-    EditText type;
+    Button btnType;
     EditText description;
     String[] types = {"Histórico Escolar Graduação","Certidão de Matrícula","Certidão de que é aluno","Solicitação de Exame de Suficiência","Alteração de Pré(co)-Requisito","Trancamento de Matrícula"};
     @Override
@@ -20,10 +20,8 @@ public class RequestActivity extends Activity {
         setContentView(R.layout.activity_request);
         ActivityBuilder.build(this, "Nova Solicitação");
 
-        Button btnType = findViewById(R.id.btnType);
+        btnType = findViewById(R.id.btnType);
         Button btnSubmit = findViewById(R.id.btnSubmit);
-
-        type = findViewById(R.id.tType);
         description = findViewById(R.id.tDescription);
 
         btnType.setOnClickListener(selectTitle());
@@ -38,7 +36,7 @@ public class RequestActivity extends Activity {
                 builder.setItems(types, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        type.setText(types[i]);
+                        btnType.setText(types[i]);
                     }
                 });
                 AlertDialog dialog = builder.create();
@@ -50,7 +48,7 @@ public class RequestActivity extends Activity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String msgTitle = type.getText().toString();
+                String msgTitle = btnType.getText().toString();
                 String msgDescription  = description.getText().toString();
                 String msg = String.format("Title: %s\nDescription: %s",msgTitle,msgDescription);
                 Toast.makeText(RequestActivity.this,msg,Toast.LENGTH_LONG).show();
