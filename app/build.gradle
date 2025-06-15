@@ -1,12 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
 }
-def apiKey = project.hasProperty("API_KEY") ? project.API_KEY : ""
-def apiOrigin = project.hasProperty("API_ORIGIN") ? project.API_ORIGIN : ""
+def keystorePropertiesFile = rootProject.file("local.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def apiKey = keystoreProperties.hasProperty("API_KEY")?keystoreProperties.getProperty("API_KEY") :""
+def apiOrigin = keystoreProperties.hasProperty("API_ORIGIN")?keystoreProperties.getProperty("API_ORIGIN") :""
+
 android {
     namespace 'br.com.ufv.inf311.solicitaedu'
     compileSdk 35
-
     defaultConfig {
         applicationId "br.com.ufv.inf311.solicitaedu"
         minSdk 24
@@ -25,12 +28,14 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
 }
 
 dependencies {
