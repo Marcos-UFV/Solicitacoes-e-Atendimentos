@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
 }
-
+def apiKey = project.hasProperty("API_KEY") ? project.API_KEY : ""
+def apiOrigin = project.hasProperty("API_ORIGIN") ? project.API_ORIGIN : ""
 android {
     namespace 'br.com.ufv.inf311.solicitaedu'
     compileSdk 35
@@ -12,8 +13,12 @@ android {
         targetSdk 35
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String",  "API_KEY", "\"${apiKey}\"")
+        buildConfigField("String",  "API_ORIGIN", "\"${apiOrigin}\"")
+    }
+    buildFeatures {
+        buildConfig true
     }
 
     buildTypes {
@@ -29,7 +34,8 @@ android {
 }
 
 dependencies {
-
+    implementation libs.retrofit.v210
+    implementation libs.converter.gson
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
