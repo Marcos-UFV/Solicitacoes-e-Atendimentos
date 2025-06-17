@@ -1,11 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
 }
-def keystorePropertiesFile = rootProject.file("local.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-def apiKey = keystoreProperties.hasProperty("API_KEY")?keystoreProperties.getProperty("API_KEY") :""
-def apiOrigin = keystoreProperties.hasProperty("API_ORIGIN")?keystoreProperties.getProperty("API_ORIGIN") :""
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
+}
+
+def apiKey = localProperties.getProperty("api.key", "")
+def apiOrigin = localProperties.getProperty("api.origin", "")
 
 android {
     namespace 'br.com.ufv.inf311.solicitaedu'
