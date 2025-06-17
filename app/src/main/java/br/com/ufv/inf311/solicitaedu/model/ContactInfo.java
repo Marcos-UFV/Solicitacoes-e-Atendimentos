@@ -13,4 +13,23 @@ public class ContactInfo {
                 ", datanascimento='" + datanascimento + '\'' +
                 '}';
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDatanascimento() {
+        if(datanascimento != null) {
+            String[] split = datanascimento.split("-");
+            String day = split[2];
+            split[2] = split[0];
+            split[0] = day;
+            datanascimento = String.join("", split);
+        }
+        return datanascimento;
+    }
 }
