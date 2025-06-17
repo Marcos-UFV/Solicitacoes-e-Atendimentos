@@ -13,6 +13,10 @@ public class ContactDTO implements Serializable {
                 "success='" + success ;
 
     }
+
+    public List<ContactInfo> getDados() {
+        return dados;
+    }
 }
 /*"success": true,
         "dados": [
