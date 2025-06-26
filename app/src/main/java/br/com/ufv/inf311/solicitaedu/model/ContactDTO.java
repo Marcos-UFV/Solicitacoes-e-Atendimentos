@@ -5,7 +5,39 @@ import java.util.List;
 
 public class ContactDTO implements Serializable {
     boolean success;
-    List<ContactInfo> dados;
+    List<Data> dados;
+    public static class Data{
+        String id;
+        String nome;
+        String datanascimento;
+        public String getId() {
+            return id;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        public String getDatanascimento() {
+            if(datanascimento != null) {
+                String[] split = datanascimento.split("-");
+                String day = split[2];
+                split[2] = split[0];
+                split[0] = day;
+                datanascimento = String.join("", split);
+            }
+            return datanascimento;
+        }
+
+        @Override
+        public String toString() {
+            return "Data{" +
+                    "id='" + id + '\'' +
+                    ", nome='" + nome + '\'' +
+                    ", datanascimento='" + datanascimento + '\'' +
+                    '}';
+        }
+    }
     @Override
     public String toString() {
         return "ContactDTO{" +
@@ -14,76 +46,7 @@ public class ContactDTO implements Serializable {
 
     }
 
-    public List<ContactInfo> getDados() {
+    public List<Data> getDados() {
         return dados;
     }
 }
-/*"success": true,
-        "dados": [
-        {
-        "id": "25",
-        "contatoPrincipal": "25",
-        "contatosSecundarios": [],
-        "nome": "Marcos Aurélio",
-        "nomeSocial": null,
-        "codigo": null,
-        "imagem": null,
-        "cpf": null,
-        "datanascimento": null,
-        "endereco": null,
-        "cep": null,
-        "numero": null,
-        "bairro": null,
-        "naturalidade": null,
-        "nacionalidade": null,
-        "nomeNacionalidade": null,
-        "cidade": null,
-        "cidadeNome": null,
-        "sexo": null,
-        "sexoNome": null,
-        "origemId": "1",
-        "origemNome": "CRM",
-        "mesclada": "0",
-        "verificada": "1",
-        "desinscreveu": "0",
-        "naoPermitirComunicacao": "0",
-        "urlPublicaRdStation": null,
-        "canhoto": null,
-        "profissao": null,
-        "aluno": null,
-        "exaluno": null,
-        "anoFormacao": null,
-        "escolaOrigem": null,
-        "estadoCivil": null,
-        "estadoCivilNome": null,
-        "cor": null,
-        "corNome": null,
-        "grauInstrucao": null,
-        "grauInstrucaoNome": null,
-        "outrasDeficiencias": null,
-        "clienteIugu": null,
-        "pessoasRelacionadas": false,
-        "telefones": {
-        "principal": false,
-        "secundarios": []
-        },
-        "emails": {
-        "principal": {
-        "id": "25",
-        "email": "aurelio.marcos@ufv.br"
-        },
-        "secundarios": []
-        },
-        "tags": false,
-        "origemCanal": false,
-        "origens": [
-        {
-        "id": "1",
-        "titulo": "CRM"
-        }
-        ],
-        "tiposPessoas": false,
-        "deficiencias": false
-        }
-        ]
-        }*/

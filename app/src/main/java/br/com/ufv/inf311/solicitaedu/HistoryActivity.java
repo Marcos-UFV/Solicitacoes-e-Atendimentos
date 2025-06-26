@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import br.com.ufv.inf311.solicitaedu.model.ContactInfo;
 import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
 import br.com.ufv.inf311.solicitaedu.model.RegisterInfo;
 import br.com.ufv.inf311.solicitaedu.network.ApiClient;
