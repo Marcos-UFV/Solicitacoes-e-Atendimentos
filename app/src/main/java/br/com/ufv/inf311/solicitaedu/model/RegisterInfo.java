@@ -13,7 +13,7 @@ public class RegisterInfo {
         return processoNome;
     }
 
-    public String momento() {
+    public String getMomento() {
         return momento;
     }
 }

@@ -6,13 +6,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.List;
+
+import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
+import br.com.ufv.inf311.solicitaedu.model.RegisterInfo;
+import br.com.ufv.inf311.solicitaedu.network.ApiClient;
+import br.com.ufv.inf311.solicitaedu.network.RubeusEndpointsAPI;
 import br.com.ufv.inf311.solicitaedu.utils.DataBaseSingleton;
 
 import br.com.ufv.inf311.solicitaedu.model.Contact;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends Activity {
@@ -30,8 +41,9 @@ public class MainActivity extends Activity {
         Intent it = getIntent();
         contact = (Contact) it.getSerializableExtra("contact");
 
-        initNotifications();
         ActivityBuilder.build(this, "Home");
+        initNotifications();
+        // fetch();
     }
 
     // === HOME BUTTONS ===
@@ -57,14 +69,36 @@ public class MainActivity extends Activity {
 
     public void initNotifications() {
         MaterialButton bttn = (MaterialButton) findViewById(R.id.notifsButton);
-        int total = 0; String rest = " Nova(s) Respostas(s)";
+        final int[] total = {0}; // Necessário para poder modificar dentro do callback
+        String rest = " Nova(s) Respostas(s)";
+
+        int lastSeenId = 0;
 
         Cursor c = db.search("Notification", new String[]{"lastSeenID"}, "", "");
         if(c.getCount() != 0){
-
+            lastSeenId = 10; // Valor do BD
         }
 
-        bttn.setText(total + rest);
+        RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
+        Call<RegisterDTO> callGetRegisters = api.getRegisters(BuildConfig.API_ORIGIN, BuildConfig.API_KEY, ""+contact.getId());
+        int finalLastSeenId = lastSeenId; // Essa cópia é necessária para usar a variável dentro do callback
+        callGetRegisters.enqueue(new Callback<RegisterDTO>() {
+            @Override
+            public void onResponse(Call<RegisterDTO> call, Response<RegisterDTO> response) {
+                if (response.isSuccessful()) {
+                    List<RegisterInfo> info = !response.body().getDados().isEmpty() ? response.body().getDados() : null;
+                    if (info != null) {
+                        for (int i = 0; i < info.size(); i++) {
+                            if (Integer.parseInt(info.get(i).getId()) > finalLastSeenId) total[0]++;
+                        }
+                    }
+                    bttn.setText(total[0] + rest);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterDTO> call, Throwable t) {}
+        });
     }
 
     // === FOOTER BUTTONS ===
