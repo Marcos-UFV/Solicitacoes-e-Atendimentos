@@ -5,21 +5,41 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.Arrays;
+
+import br.com.ufv.inf311.solicitaedu.model.Contact;
+import br.com.ufv.inf311.solicitaedu.model.Request;
+import br.com.ufv.inf311.solicitaedu.model.RequestDTO;
+import br.com.ufv.inf311.solicitaedu.model.RequestType;
+import br.com.ufv.inf311.solicitaedu.network.ApiClient;
+import br.com.ufv.inf311.solicitaedu.network.RubeusEndpointsAPI;
+import okhttp3.RequestBody;
+import okio.Buffer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RequestActivity extends Activity {
     Button btnType;
     EditText description;
-    String[] types = {"Histórico Escolar Graduação","Certidão de Matrícula","Certidão de que é aluno","Solicitação de Exame de Suficiência","Alteração de Pré(co)-Requisito","Trancamento de Matrícula"};
+    RequestType requestType;
+    RequestType[] requestTypes;
+    Contact contact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
         ActivityBuilder.build(this, "Nova Solicitação");
-
+        requestTypes = RequestType.values();
+        Intent it = getIntent();
+        contact = (Contact) it.getSerializableExtra("contact");
         btnType = findViewById(R.id.btnType);
         Button btnSubmit = findViewById(R.id.btnSubmit);
         description = findViewById(R.id.tDescription);
@@ -28,6 +48,7 @@ public class RequestActivity extends Activity {
         btnSubmit.setOnClickListener(submit());
     }
     public View.OnClickListener selectTitle(){
+        String[] types = Arrays.stream(requestTypes).map(RequestType::getDescription).toArray(String[]::new);
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +58,7 @@ public class RequestActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         btnType.setText(types[i]);
+                        requestType = requestTypes[i];
                     }
                 });
                 AlertDialog dialog = builder.create();
@@ -44,14 +66,41 @@ public class RequestActivity extends Activity {
             }
         };
     }
+    public static String requestBodyToString(RequestBody requestBody) throws IOException {
+        Buffer buffer = new Buffer();
+        requestBody.writeTo(buffer);
+        return buffer.readUtf8();
+    }
     public View.OnClickListener submit(){
+        RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String msgTitle = btnType.getText().toString();
                 String msgDescription  = description.getText().toString();
-                String msg = String.format("Title: %s\nDescription: %s",msgTitle,msgDescription);
-                Toast.makeText(RequestActivity.this,msg,Toast.LENGTH_LONG).show();
+                if(requestType != null && !msgDescription.isEmpty()){
+                    int processId= requestType.getId();
+                    Request request = new Request(processId,contact,msgDescription);
+                    Call<RequestDTO> requestCallBack = api.createRequest(request, BuildConfig.API_ORIGIN, BuildConfig.API_KEY);
+                    requestCallBack.enqueue(new Callback<RequestDTO>() {
+                        @Override
+                        public void onResponse(Call<RequestDTO> call, Response<RequestDTO> response) {
+                            Log.i("EVENTO",request.toString());
+                            if (response.isSuccessful()) {
+                                Log.i("EVENTO", response.body().toString());
+                            }else{
+                                //TODO: handle response error
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<RequestDTO> call, Throwable t) {
+                            //TODO: handle request error
+                        }
+                    });
+
+                }else{
+                    //TODO: handle empty values
+                }
             }
         };
     }
