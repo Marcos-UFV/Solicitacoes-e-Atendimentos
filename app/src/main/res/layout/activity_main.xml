@@ -28,9 +28,10 @@
             android:layout_marginBottom="40dp">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/notifsButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="6 Novas Respostas"
+                android:text="1 Nova(s) Resposta(s)"
                 android:textColor="@color/SOLICITA_white"
                 android:textSize="27sp"
                 android:textAllCaps="false"
