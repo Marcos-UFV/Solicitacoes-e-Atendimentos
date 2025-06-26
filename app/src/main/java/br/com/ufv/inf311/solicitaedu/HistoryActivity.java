@@ -3,11 +3,21 @@ package br.com.ufv.inf311.solicitaedu;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import br.com.ufv.inf311.solicitaedu.model.ContactInfo;
+import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
+import br.com.ufv.inf311.solicitaedu.model.RegisterInfo;
+import br.com.ufv.inf311.solicitaedu.network.ApiClient;
+import br.com.ufv.inf311.solicitaedu.network.RubeusEndpointsAPI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class HistoryActivity extends Activity {
@@ -79,7 +89,7 @@ public class HistoryActivity extends Activity {
             cardContainer.addView(card);
         }
 
-
+        fetchCards();
     }
 
     // Go to Home (MainActivity).
@@ -100,5 +110,30 @@ public class HistoryActivity extends Activity {
     private void onCardClick(int idx) {
         Intent it = new Intent(this, HistoryDetail.class);
         startActivity(it);
+    }
+
+    private void fetchCards() {
+        RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
+        Call<RegisterDTO> callGetRegisters = api.getRegisters(BuildConfig.API_ORIGIN, BuildConfig.API_KEY, "29");
+        callGetRegisters.enqueue(new Callback<RegisterDTO>() {
+            @Override
+            public void onResponse(Call<RegisterDTO> call, Response<RegisterDTO> response) {
+                if (response.isSuccessful()) {
+                    RegisterInfo info = !response.body().getDados().isEmpty() ? response.body().getDados().get(0) : null;
+
+                    if (info != null) {
+                        Toast.makeText(getApplicationContext(), "processo: " + info.getProcessoNome(), Toast.LENGTH_LONG).show();
+                    }
+
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RegisterDTO> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -7,8 +7,8 @@ if (localPropertiesFile.exists()) {
     localProperties.load(new FileInputStream(localPropertiesFile))
 }
 
-def apiKey = localProperties.getProperty("api.key", "")
-def apiOrigin = localProperties.getProperty("api.origin", "")
+def apiKey = localProperties.getProperty("api.key", "8f158643e2aadca7811c649b45561992")
+def apiOrigin = localProperties.getProperty("api.origin", "7")
 
 android {
     namespace 'br.com.ufv.inf311.solicitaedu'
@@ -51,4 +51,6 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
