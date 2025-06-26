@@ -5,18 +5,20 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
-import android.util.Log;
+
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
 import br.com.ufv.inf311.solicitaedu.utils.DataBaseSingleton;
 
+import br.com.ufv.inf311.solicitaedu.model.Contact;
+
 
 public class MainActivity extends Activity {
 
     DataBaseSingleton db;
+    Contact contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,9 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         db = DataBaseSingleton.getInstance(this);
+
+        Intent it = getIntent();
+        contact = (Contact) it.getSerializableExtra("contact");
 
         initNotifications();
         ActivityBuilder.build(this, "Home");
@@ -77,6 +82,7 @@ public class MainActivity extends Activity {
     // Go to History Activity.
     public void openRequestActivity(View v) {
         Intent it = new Intent(this, RequestActivity.class);
+        it.putExtra("contact",contact);
         startActivity(it);
     }
 }
