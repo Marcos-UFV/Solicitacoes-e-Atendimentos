@@ -5,16 +5,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.Calendar;
+
+import br.com.ufv.inf311.solicitaedu.model.Contact;
 
 
 public class MainActivity extends Activity {
+    Contact contact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent it = getIntent();
+        contact = (Contact) it.getSerializableExtra("contact");
         ActivityBuilder.build(this, "Home");
     }
 
@@ -54,6 +60,7 @@ public class MainActivity extends Activity {
     // Go to History Activity.
     public void openRequestActivity(View v) {
         Intent it = new Intent(this, RequestActivity.class);
+        it.putExtra("contact",contact);
         startActivity(it);
     }
 }

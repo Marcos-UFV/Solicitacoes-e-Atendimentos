@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 import br.com.ufv.inf311.solicitaedu.model.Contact;
 import br.com.ufv.inf311.solicitaedu.model.ContactDTO;
-import br.com.ufv.inf311.solicitaedu.model.ContactInfo;
 import br.com.ufv.inf311.solicitaedu.network.ApiClient;
 import br.com.ufv.inf311.solicitaedu.network.RubeusEndpointsAPI;
 import retrofit2.Call;
@@ -55,11 +54,12 @@ public class LoginActivity extends Activity {
                         public void onResponse(Call<ContactDTO> call, Response<ContactDTO> response) {
                             if (response.isSuccessful()) {
                                 Log.i("CONTATO", response.body().toString());
-                                ContactInfo info = !response.body().getDados().isEmpty() ?response.body().getDados().get(0):null;
+                                ContactDTO.Data info = !response.body().getDados().isEmpty() ?response.body().getDados().get(0):null;
                                 String birthDate = info.getDatanascimento();
                                 Log.i("CONTATO", "Typed password: "+password+" correct password: "+birthDate);
                                 if(password.equals(birthDate)){
                                     contact.setName(info.getNome());
+                                    contact.setId(Integer.parseInt(info.getId()));
                                     Intent it = new Intent(getContext(), MainActivity.class);
                                     it.putExtra("contact",contact);
                                     startActivity(it);
