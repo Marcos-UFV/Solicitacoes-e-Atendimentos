@@ -3,6 +3,7 @@ package br.com.ufv.inf311.solicitaedu.model;
 import java.io.Serializable;
 
 public class Contact implements Serializable {
+    private int id;
     private String name;
     private String email;
     private String birthDate;
@@ -25,6 +26,14 @@ public class Contact implements Serializable {
         return birthDate;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -39,8 +48,9 @@ public class Contact implements Serializable {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
+        return "{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 '}';
