@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
@@ -75,9 +78,12 @@ public class MainActivity extends Activity {
         int lastSeenId = 0;
 
         Cursor c = db.search("Notification", new String[]{"lastSeenID"}, "", "");
-        if(c.getCount() != 0){
-            lastSeenId = 10; // Valor do BD
+        if(c.getCount() != 0 && c.moveToFirst()) {
+            do {
+                lastSeenId = c.getInt(c.getColumnIndexOrThrow("lastSeenID"));
+            } while (c.moveToNext());
         }
+
 
         RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
         Call<RegisterDTO> callGetRegisters = api.getRegisters(BuildConfig.API_ORIGIN, BuildConfig.API_KEY, ""+contact.getId());

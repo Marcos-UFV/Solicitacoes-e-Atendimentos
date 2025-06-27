@@ -26,11 +26,14 @@ public class CalendarActivity extends Activity {
         setContentView(R.layout.activity_calendar);
 
         ActivityBuilder.build(this, "Agenda");
+        fetchCards();
+    }
 
+    protected void fetchCards() {
         String[] eventos = {"Reunião com Conselho de Ética",
-                            "Uso do Cluster para Pesquisa",
-                            "Reunião com Departamento de Relações Internacionais",
-                            "Exame de Suficiência em IN311"};
+                "Uso do Cluster para Pesquisa",
+                "Reunião com Departamento de Relações Internacionais",
+                "Exame de Suficiência em IN311"};
         String[] days = {"06", "07", "09", "10"};
         String[] begs = {"10", "00", "14", "08"};
         String[] ends = {"11", "23", "15", "10"};

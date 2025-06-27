@@ -8,5 +8,5 @@
     <string name="request_type">Selecione o tipo</string>
     <string name="enter_label">Entrar</string>
     <string name="email_label">Email</string>
-    <string name="password_label">Senha</string>
+    <string name="password_label">Data de Nascimento</string>
 </resources>

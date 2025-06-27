@@ -61,7 +61,7 @@
             android:id="@+id/tPassword"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:inputType="textPassword"
+            android:inputType="text|date"
             android:background="@drawable/login_input_field"/>
     </LinearLayout>
     <Button
