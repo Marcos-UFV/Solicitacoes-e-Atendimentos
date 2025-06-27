@@ -5,14 +5,29 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.app.Activity;
 import android.provider.CalendarContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+
+import java.io.IOException;
+import java.util.List;
+
+import br.com.ufv.inf311.solicitaedu.model.AppointmentDTO;
+import br.com.ufv.inf311.solicitaedu.model.AppointmentInfo;
+import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
+import br.com.ufv.inf311.solicitaedu.model.RegisterInfo;
+import br.com.ufv.inf311.solicitaedu.network.ApiClient;
+import br.com.ufv.inf311.solicitaedu.network.RubeusEndpointsAPI;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class CalendarActivity extends Activity {
@@ -29,7 +44,7 @@ public class CalendarActivity extends Activity {
         fetchCards();
     }
 
-    protected void fetchCards() {
+    protected void fetchCards_MOCK() {
         String[] eventos = {"Reunião com Conselho de Ética",
                 "Uso do Cluster para Pesquisa",
                 "Reunião com Departamento de Relações Internacionais",
@@ -56,6 +71,52 @@ public class CalendarActivity extends Activity {
 
             cardContainer.addView(card);
         }
+    }
+
+    private void fetchCards() {
+        RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
+        Call<AppointmentDTO> callGetAppointments = api.getAppointments(BuildConfig.API_ORIGIN, BuildConfig.API_KEY, "28");
+
+        cardContainer = findViewById(R.id.calendar_card_container);
+        inflater = LayoutInflater.from(this);
+
+        callGetAppointments.enqueue(new Callback<AppointmentDTO>() {
+            @Override
+            public void onResponse(Call<AppointmentDTO> call, Response<AppointmentDTO> response) {
+                if (response.isSuccessful()) {
+                    List<AppointmentInfo> infos = !response.body().getDados().isEmpty() ? response.body().getDados() : null;
+
+                    for(AppointmentInfo info : infos) {
+                        View card;
+
+                        card = inflater.inflate(R.layout.calendar_card, cardContainer, false);
+                        TextView title = card.findViewById(R.id.calendar_card_title);
+                        title.setText(info.getNome());
+                        TextView date = card.findViewById(R.id.calendar_card_date);
+                        TextView loc = card.findViewById(R.id.calendar_card_loc);
+
+                        date.setText(info.getHorario());
+                        loc.setText(info.getDescricao());
+
+                        cardContainer.addView(card);
+                    }
+
+                } else {
+                    Log.i("CALENDAR", "Falhou ao obter a resposta.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AppointmentDTO> call, Throwable t) {
+                try {
+                    String str = RequestActivity.requestBodyToString(call.request().body());
+                    Log.i("CALENDAR", str);
+                    Log.i("CALENDAR", "Falhou ao solicitar as atividades");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     public void saveOnGoogleCalendar(View v) {
