@@ -4,12 +4,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".HistoryActivity">
 
     <!-- Header -->
     <include
         android:id="@+id/header"
         layout="@layout/header" />
+
+    <Button
+        android:id="@+id/open_filter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filtrar"
+        android:onClick="showFilterDialog"
+        android:layout_gravity="center"
+        android:background="@drawable/filter_button_background"
+        android:textColor="@color/white"/>
+
+<!--    <EditText-->
+<!--        android:id="@+id/history_start_date"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginRight="16dp"-->
+<!--        android:hint="A partir de"-->
+<!--        android:focusable="false"-->
+<!--        android:clickable="true"-->
+<!--        android:drawableEnd="@drawable/calendar_icon"></EditText>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <Switch-->
+<!--            android:id="@+id/history_switch"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--             />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:text="Apenas resolvidas"-->
+<!--            android:layout_height="wrap_content" />-->
+<!--    </LinearLayout>-->
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Filtrar"-->
+<!--        android:layout_marginLeft="48dp"-->
+<!--        android:layout_marginRight="48dp"></Button>-->
+
+
+
+
+    <!-- In case of API empty response  -->
+    <TextView
+        android:id="@+id/history_empty_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:text="Nenhuma solicitação encontrada."
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:gravity="center"
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="match_parent"
