@@ -1,5 +1,6 @@
 package br.com.ufv.inf311.solicitaedu;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -38,6 +39,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        findViewById(R.id.notifsButton).setVisibility(View.GONE);
+        findViewById(R.id.ultimaAtt).setVisibility(View.GONE);
 
         db = DataBaseSingleton.getInstance(this);
 
@@ -82,9 +86,6 @@ public class MainActivity extends Activity {
             do {
                 lastSeenId = c.getInt(c.getColumnIndexOrThrow("lastSeenID"));
             } while (c.moveToNext());
-        } else {
-            bttn.setVisibility(View.GONE);
-            findViewById(R.id.ultimaAtt).setVisibility(View.GONE);
         }
 
         RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
@@ -124,11 +125,7 @@ public class MainActivity extends Activity {
                         throw new RuntimeException(e);
                     }
 
-
-                    if(total[0] == 0) {
-                        bttn.setVisibility(View.GONE);
-                        findViewById(R.id.ultimaAtt).setVisibility(View.GONE);
-                    } else {
+                    if(total[0] != 0) {
                         bttn.setVisibility(View.VISIBLE);
                         findViewById(R.id.ultimaAtt).setVisibility(View.VISIBLE);
                     }

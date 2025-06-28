@@ -44,7 +44,8 @@ public class HistoryDetail extends AppCompatActivity {
 
     private void buildDetails() {
         TextView detailsTxt = (TextView) findViewById(R.id.history_detail_details);
-        detailsTxt.setText(register.getDetalhes());
+        if(register.getDetalhes() != null)
+            detailsTxt.setText(register.getDetalhes());
     }
 
     private void buildAttachments() {
@@ -54,23 +55,23 @@ public class HistoryDetail extends AppCompatActivity {
         attachmentsContainer.removeAllViews();
 
         List<String> files = register.getArquivos();
+        if(register.getArquivos() != null) {
+            for (int i = 0; i < files.size(); i++) {
+                View itemView = inflater.inflate(R.layout.item_attachment, attachmentsContainer, false);
 
-        for (int i = 0; i < files.size(); i++) {
-            View itemView = inflater.inflate(R.layout.item_attachment, attachmentsContainer, false);
+                TextView name = itemView.findViewById(R.id.attachment_name);
+                name.setText("Arquivo_" + (i + 1));
 
-            TextView name = itemView.findViewById(R.id.attachment_name);
-            name.setText("Arquivo_" + (i + 1));
+                int finalI = i;
+                name.setOnClickListener(v -> {
+                    Uri fileUri = Uri.parse(files.get(finalI));
+                    Intent it = new Intent(Intent.ACTION_VIEW, fileUri);
+                    startActivity(it);
+                });
 
-            int finalI = i;
-            name.setOnClickListener(v -> {
-                Uri fileUri = Uri.parse(files.get(finalI));
-                Intent it = new Intent(Intent.ACTION_VIEW, fileUri);
-                startActivity(it);
-            });
-
-            attachmentsContainer.addView(itemView);
+                attachmentsContainer.addView(itemView);
+            }
         }
-
     }
 
     public void goBack(View view) {
