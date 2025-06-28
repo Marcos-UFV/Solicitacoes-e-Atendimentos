@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -111,18 +112,23 @@ public class LoginActivity extends Activity {
                                 }
                             } else {
                                 //TODO: handle response error
-                                Log.i("CONTATO", "RESPONSE ERROR");
+                                Log.i("CONTATO","Response Body: "+response.body());
+                                try {
+                                    Log.i("CONTATO", "RESPONSE ERROR"+ RequestActivity.requestBodyToString(call.request().body()));
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
                             }
                         }
 
                         @Override
                         public void onFailure(Call<ContactDTO> call, Throwable t) {
                             //TODO: handle request error
-                            Log.i("CONTATO", "REQUEST ERROR" + t.toString());
+                            Log.i("CONTATO", "REQUEST ERROR" + t.toString()+"error: "+t);
                         }
                     });
                 }else{
-                    //TODO: handle empty values
+                    Toast.makeText(getContext(),"Email e Data de Aniversário não devem ser nulos",Toast.LENGTH_LONG).show();
                 }
             }
         };
