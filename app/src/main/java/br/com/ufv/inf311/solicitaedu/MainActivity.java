@@ -116,6 +116,7 @@ public class MainActivity extends Activity {
     // Go to History Activity.
     public void openHistoryActivity(View v) {
         Intent it = new Intent(this, HistoryActivity.class);
+        it.putExtra("contact", contact);
         startActivity(it);
     }
 
