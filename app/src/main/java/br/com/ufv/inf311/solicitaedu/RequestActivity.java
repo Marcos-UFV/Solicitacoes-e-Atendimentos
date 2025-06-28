@@ -2,6 +2,7 @@ package br.com.ufv.inf311.solicitaedu;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -84,22 +84,23 @@ public class RequestActivity extends Activity {
                     requestCallBack.enqueue(new Callback<RequestDTO>() {
                         @Override
                         public void onResponse(Call<RequestDTO> call, Response<RequestDTO> response) {
-                            Log.i("EVENTO",request.toString());
                             if (response.isSuccessful()) {
-                                Log.i("EVENTO", response.body().toString());
+                                Intent intent = new Intent(getContext(), MainActivity.class);
+                                intent.putExtra("contact",contact);
+                                startActivity(intent);
                             }else{
-                                //TODO: handle response error
+                                Log.i("EVENTO","Response Error");
                             }
                         }
 
                         @Override
                         public void onFailure(Call<RequestDTO> call, Throwable t) {
-                            //TODO: handle request error
+                            Log.i("EVENTO","Request Error");
                         }
                     });
 
                 }else{
-                    //TODO: handle empty values
+                    Log.i("EVENTO","Empty values");
                 }
             }
         };
@@ -121,5 +122,8 @@ public class RequestActivity extends Activity {
     // Do nothing, since it's the current Activity.
     public void openRequestActivity(View v) {
 
+    }
+    public Context getContext(){
+        return this;
     }
 }
