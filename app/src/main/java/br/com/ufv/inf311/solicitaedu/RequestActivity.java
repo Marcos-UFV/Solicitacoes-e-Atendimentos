@@ -107,12 +107,14 @@ public class RequestActivity extends Activity {
     // Go to Home (MainActivity).
     public void openHomeActivity(View v) {
         Intent it = new Intent(this, MainActivity.class);
+        it.putExtra("contact", contact);
         startActivity(it);
     }
 
     // Go to History Activity.
     public void openHistoryActivity(View v) {
         Intent it = new Intent(this, HistoryActivity.class);
+        it.putExtra("contact", contact);
         startActivity(it);
     }
 

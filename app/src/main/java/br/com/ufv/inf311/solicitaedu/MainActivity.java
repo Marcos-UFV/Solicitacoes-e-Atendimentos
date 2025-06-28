@@ -6,15 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 
-import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
@@ -82,8 +82,10 @@ public class MainActivity extends Activity {
             do {
                 lastSeenId = c.getInt(c.getColumnIndexOrThrow("lastSeenID"));
             } while (c.moveToNext());
+        } else {
+            bttn.setVisibility(View.GONE);
+            findViewById(R.id.ultimaAtt).setVisibility(View.GONE);
         }
-
 
         RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
         Call<RegisterDTO> callGetRegisters = api.getRegisters(BuildConfig.API_ORIGIN, BuildConfig.API_KEY, ""+contact.getId());
@@ -91,14 +93,45 @@ public class MainActivity extends Activity {
         callGetRegisters.enqueue(new Callback<RegisterDTO>() {
             @Override
             public void onResponse(Call<RegisterDTO> call, Response<RegisterDTO> response) {
+                int maiorId = 0;
+                String momento = "";
+
                 if (response.isSuccessful()) {
                     List<RegisterInfo> info = !response.body().getDados().isEmpty() ? response.body().getDados() : null;
                     if (info != null) {
                         for (int i = 0; i < info.size(); i++) {
-                            if (Integer.parseInt(info.get(i).getId()) > finalLastSeenId) total[0]++;
+                            if (Integer.parseInt(info.get(i).getId()) > finalLastSeenId &&
+                                    info.get(i).getEtapaNome().equals("Resolvida")) {
+                                total[0]++;
+                            }
+
+                            if(Integer.parseInt(info.get(i).getId()) > maiorId) {
+                                maiorId = Integer.parseInt(info.get(i).getId());
+                                momento = info.get(i).getMomento();
+                            }
                         }
                     }
+
                     bttn.setText(total[0] + rest);
+
+                    SimpleDateFormat formatoEntrada = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    SimpleDateFormat formatoSaida = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+                    Date data = null;
+                    try {
+                        data = formatoEntrada.parse(momento);
+                        ((TextView) findViewById(R.id.ultimaAtt)).setText("Última atualização: " + formatoSaida.format(data));
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                    if(total[0] == 0) {
+                        bttn.setVisibility(View.GONE);
+                        findViewById(R.id.ultimaAtt).setVisibility(View.GONE);
+                    } else {
+                        bttn.setVisibility(View.VISIBLE);
+                        findViewById(R.id.ultimaAtt).setVisibility(View.VISIBLE);
+                    }
                 }
             }
 

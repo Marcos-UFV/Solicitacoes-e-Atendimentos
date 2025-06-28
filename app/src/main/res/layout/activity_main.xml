@@ -47,6 +47,7 @@
 
 
             <TextView
+                android:id="@+id/ultimaAtt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="6dp"

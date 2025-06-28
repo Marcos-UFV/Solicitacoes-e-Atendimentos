@@ -3,6 +3,7 @@ package br.com.ufv.inf311.solicitaedu;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,10 +19,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import br.com.ufv.inf311.solicitaedu.model.Contact;
 import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
 import br.com.ufv.inf311.solicitaedu.model.RegisterInfo;
 import br.com.ufv.inf311.solicitaedu.network.ApiClient;
 import br.com.ufv.inf311.solicitaedu.network.RubeusEndpointsAPI;
+import br.com.ufv.inf311.solicitaedu.utils.DataBaseSingleton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,24 +32,42 @@ import retrofit2.Response;
 
 public class HistoryActivity extends Activity {
     private List<RegisterInfo> registers;
+    DataBaseSingleton db;
+    Contact contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         ActivityBuilder.build(this, "Histórico");
+
+        db = DataBaseSingleton.getInstance(this);
+
+        contact = (Contact) getIntent().getSerializableExtra("contact");
+
         fetchRegisters();
     }
 
     private void fetchRegisters() {
         RubeusEndpointsAPI api = ApiClient.getClientRx().create(RubeusEndpointsAPI.class);
-        Call<RegisterDTO> callGetRegisters = api.getRegisters(BuildConfig.API_ORIGIN, BuildConfig.API_KEY, "29");
+        Call<RegisterDTO> callGetRegisters = api.getRegisters(BuildConfig.API_ORIGIN, BuildConfig.API_KEY, ""+contact.getId());
         callGetRegisters.enqueue(new Callback<RegisterDTO>() {
             @Override
             public void onResponse(Call<RegisterDTO> call, Response<RegisterDTO> response) {
                 if (response.isSuccessful()) {
                     if (response.body().getDados() != null) {
                         registers = !response.body().getDados().isEmpty() ? response.body().getDados() : null;
+
+                        int higherID = 0;
+                        for(RegisterInfo reg : registers) {
+                            if(reg.getEtapaNome().equals("Resolvida"))
+                                higherID = Math.max(higherID, Integer.parseInt(reg.getId()));
+                        }
+
+                        ContentValues v = new ContentValues();
+                        v.put("lastSeenID", higherID);
+                        db.update("Notification", v, "id = 1");
+
                         createCards("", false);
                     } else {
                         setErrorMessageVisibility(true);
@@ -128,6 +149,7 @@ public class HistoryActivity extends Activity {
     // Go to Home (MainActivity).
     public void openHomeActivity(View v) {
         Intent it = new Intent(this, MainActivity.class);
+        it.putExtra("contact", contact);
         startActivity(it);
     }
 
@@ -137,6 +159,7 @@ public class HistoryActivity extends Activity {
     // Go to Request Activity.
     public void openRequestActivity(View v) {
         Intent it = new Intent(this, RequestActivity.class);
+        it.putExtra("contact", contact);
         startActivity(it);
     }
 
