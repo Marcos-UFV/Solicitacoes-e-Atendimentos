@@ -1,11 +1,12 @@
 package br.com.ufv.inf311.solicitaedu.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RequestDTO {
+public class RequestDTO implements Serializable {
     boolean success;
-    List<Data> dados;
-    static class Data{
+    Data dados;
+    public static class Data{
         String id;
         String pessoa;
         String tipo;
