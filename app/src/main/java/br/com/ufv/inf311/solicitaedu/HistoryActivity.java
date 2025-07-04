@@ -149,6 +149,7 @@ public class HistoryActivity extends Activity {
     // Go to Home (MainActivity).
     public void openHomeActivity(View v) {
         Intent it = new Intent(this, MainActivity.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         it.putExtra("contact", contact);
         startActivity(it);
     }
@@ -159,6 +160,7 @@ public class HistoryActivity extends Activity {
     // Go to Request Activity.
     public void openRequestActivity(View v) {
         Intent it = new Intent(this, RequestActivity.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         it.putExtra("contact", contact);
         startActivity(it);
     }

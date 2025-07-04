@@ -1,4 +1,4 @@
-package br.com.ufv.inf311.solicitaedu;
+package br.com.ufv.inf311.solicitaedu.model;
 
 public class CalendarEvent {
     public int startHour, startMin,

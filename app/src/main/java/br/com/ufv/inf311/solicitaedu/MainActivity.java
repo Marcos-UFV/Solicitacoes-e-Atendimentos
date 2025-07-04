@@ -146,6 +146,7 @@ public class MainActivity extends Activity {
     // Go to History Activity.
     public void openHistoryActivity(View v) {
         Intent it = new Intent(this, HistoryActivity.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         it.putExtra("contact", contact);
         startActivity(it);
     }
@@ -153,6 +154,7 @@ public class MainActivity extends Activity {
     // Go to History Activity.
     public void openRequestActivity(View v) {
         Intent it = new Intent(this, RequestActivity.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         it.putExtra("contact",contact);
         startActivity(it);
     }

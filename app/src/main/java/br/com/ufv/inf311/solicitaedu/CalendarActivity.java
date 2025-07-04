@@ -21,8 +21,7 @@ import java.util.List;
 
 import br.com.ufv.inf311.solicitaedu.model.AppointmentDTO;
 import br.com.ufv.inf311.solicitaedu.model.AppointmentInfo;
-import br.com.ufv.inf311.solicitaedu.model.RegisterDTO;
-import br.com.ufv.inf311.solicitaedu.model.RegisterInfo;
+import br.com.ufv.inf311.solicitaedu.model.CalendarEvent;
 import br.com.ufv.inf311.solicitaedu.network.ApiClient;
 import br.com.ufv.inf311.solicitaedu.network.RubeusEndpointsAPI;
 import retrofit2.Call;
@@ -128,12 +127,14 @@ public class CalendarActivity extends Activity {
         TextView loc = ((RelativeLayout) card).findViewById(R.id.calendar_card_loc);
         CalendarEvent e = parseDate(date.getText().toString());
 
+        Toast.makeText(this, ""+e.month, Toast.LENGTH_SHORT).show();
+
         Calendar beginTime = Calendar.getInstance();
-        beginTime.set(e.year, e.month, e.day, e.startHour, e.startMin);
+        beginTime.set(e.year, e.month-1, e.day, e.startHour, e.startMin);
         long startMillis = beginTime.getTimeInMillis();
 
         Calendar endTime = Calendar.getInstance();
-        endTime.set(e.year, e.month, e.day, e.endHour, e.endMin);
+        endTime.set(e.year, e.month-1, e.day, e.endHour, e.endMin);
         long endMillis = endTime.getTimeInMillis();
 
         Intent intent = new Intent(Intent.ACTION_INSERT)
